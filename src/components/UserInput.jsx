@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import getOpenAiData from "../util/getOpenAiData";
+import examplePrompts from "../data/examplePrompts";
 
 const UserInput = ({ responses, setResponses }) => {
   const [loading, setLoading] = useState(false);
-
-  // todo - add generate example prompt - make list of prompts and do a random selection -> place into prompt textarea
 
   // get API response using user input prompt
   const getResponse = async (e) => {
@@ -36,6 +35,15 @@ const UserInput = ({ responses, setResponses }) => {
     prompt.value = null;
   };
 
+  // get random prompt from examplePrompts.json and put in user input field
+  const getRandomPrompt = () => {
+    const randomPrompt =
+      examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
+
+    const prompt = document.querySelector("#prompt");
+    prompt.value = randomPrompt;
+  };
+
   return (
     <div className="user-input-section">
       <p className="justify-start">Enter Prompt</p>
@@ -44,6 +52,7 @@ const UserInput = ({ responses, setResponses }) => {
       ) : (
         <>
           <textarea name="promptInput" id="prompt" rows="15"></textarea>
+          <button onClick={getRandomPrompt}>Random Prompt</button>
           <button onClick={getResponse}>Submit</button>
         </>
       )}
