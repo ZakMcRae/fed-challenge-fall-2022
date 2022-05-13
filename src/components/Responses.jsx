@@ -5,10 +5,14 @@ const Responses = ({ responses }) => {
   return (
     <div className="responses-section">
       <h2 className="justify-start">Responses</h2>
+      {/* display responses - newest first (reverse order) */}
       {responses &&
-        responses.map((response) => (
-          <ResponseCard response={response} key={response.id} />
-        ))}
+        responses
+          .slice(0)
+          .reverse()
+          .map((response) => (
+            <ResponseCard response={response} key={response.id} />
+          ))}
     </div>
   );
 };
