@@ -1,19 +1,27 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import getOpenAiData from "../util/getOpenAiData";
 
 const UserInput = ({ responses, setResponses }) => {
+  const [loading, setLoading] = useState(false);
+
+  // todo - add generate example prompt - make list of prompts and do a random selection -> place into prompt textarea
+
   // get API response using user input prompt
-  const getResponse = (e) => {
+  const getResponse = async (e) => {
     e.preventDefault();
     const prompt = document.querySelector("#prompt");
 
-    //todo - make actual API call
+    // make api call and display a loading message while user waits
+    setLoading(true);
+    const apiResponse = await getOpenAiData(prompt.value);
+    setLoading(false);
 
     const newResponsesArray = [
       ...responses,
       {
         prompt: prompt.value,
-        response:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nunc enim, accumsan quis est sit amet, dictum pulvinar sem. Suspendisse potenti. Praesent quis velit vitae ex pulvinar pharetra quis quis diam. Curabitur sit amet sagittis nibh, in lobortis tortor. In hac habitasse platea dictumst. Suspendisse sollicitudin bibendum eleifend. Phasellus elementum neque vel faucibus venenatis.",
+        response: apiResponse,
         id: responses.length,
       },
     ];
@@ -24,15 +32,21 @@ const UserInput = ({ responses, setResponses }) => {
     // set localstorage with new responses
     localStorage.setItem("responses", JSON.stringify(newResponsesArray));
 
-    // clear input
+    // clear user input
     prompt.value = null;
   };
 
   return (
     <div className="user-input-section">
       <p className="justify-start">Enter Prompt</p>
-      <textarea name="promptInput" id="prompt" rows="15"></textarea>
-      <button onClick={getResponse}>Submit</button>
+      {loading ? (
+        <p className="loading-text">Generating...</p>
+      ) : (
+        <>
+          <textarea name="promptInput" id="prompt" rows="15"></textarea>
+          <button onClick={getResponse}>Submit</button>
+        </>
+      )}
     </div>
   );
 };
