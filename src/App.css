@@ -31,6 +31,7 @@
 
 .user-input-section textarea {
   margin-top: 5px;
+  padding: 2px;
 }
 
 .user-input-section button {
