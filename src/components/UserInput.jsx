@@ -46,11 +46,13 @@ const UserInput = ({ responses, setResponses }) => {
 
   return (
     <div className="user-input-section">
-      <p className="justify-start">Enter Prompt</p>
       {loading ? (
         <p className="loading-text">Generating...</p>
       ) : (
         <>
+          <label className="justify-start" htmlFor="prompt">
+            Enter Prompt
+          </label>
           <textarea name="promptInput" id="prompt" rows="15"></textarea>
           <button onClick={getRandomPrompt}>Random Prompt</button>
           <button onClick={getResponse}>Submit</button>
