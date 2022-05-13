@@ -8,7 +8,7 @@ const UserInput = ({ responses, setResponses }) => {
 
     //todo - make actual API call
 
-    setResponses([
+    const newResponsesArray = [
       ...responses,
       {
         prompt: prompt.value,
@@ -16,8 +16,15 @@ const UserInput = ({ responses, setResponses }) => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nunc enim, accumsan quis est sit amet, dictum pulvinar sem. Suspendisse potenti. Praesent quis velit vitae ex pulvinar pharetra quis quis diam. Curabitur sit amet sagittis nibh, in lobortis tortor. In hac habitasse platea dictumst. Suspendisse sollicitudin bibendum eleifend. Phasellus elementum neque vel faucibus venenatis.",
         id: responses.length,
       },
-    ]);
+    ];
 
+    // set state with new responses
+    setResponses(newResponsesArray);
+
+    // set localstorage with new responses
+    localStorage.setItem("responses", JSON.stringify(newResponsesArray));
+
+    // clear input
     prompt.value = null;
   };
 
