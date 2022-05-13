@@ -1,4 +1,4 @@
-import { API_KEY } from "../../config";
+import { API_KEY1, API_KEY2 } from "../../config";
 
 // given a prompt, make an API call to OpenAI to get the text response and return the response
 const getOpenAiData = async (prompt) => {
@@ -17,7 +17,7 @@ const getOpenAiData = async (prompt) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${API_KEY1 + API_KEY2}`,
       },
       body: JSON.stringify(data),
     }
