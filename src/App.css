@@ -4,6 +4,10 @@
   font-family: sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 .App {
   text-align: center;
   width: 90%;

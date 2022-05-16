@@ -6,10 +6,12 @@ const Responses = ({ responses }) => {
     <div className="responses-section">
       <h2 className="justify-start">Responses</h2>
       {/* display responses - newest first (reverse order) */}
-      {responses &&
-        responses.map((response) => (
-          <ResponseCard response={response} key={response.id} />
-        ))}
+      <ul>
+        {responses &&
+          responses.map((response) => (
+            <ResponseCard response={response} key={response.id} />
+          ))}
+      </ul>
     </div>
   );
 };
