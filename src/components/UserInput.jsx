@@ -17,12 +17,12 @@ const UserInput = ({ responses, setResponses }) => {
     setLoading(false);
 
     const newResponsesArray = [
-      ...responses,
       {
         prompt: prompt.value,
         response: apiResponse,
         id: responses.length,
       },
+      ...responses,
     ];
 
     // set state with new responses
