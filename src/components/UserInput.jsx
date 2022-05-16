@@ -36,7 +36,9 @@ const UserInput = ({ responses, setResponses }) => {
   };
 
   // get random prompt from examplePrompts.json and put in user input field
-  const getRandomPrompt = () => {
+  const getRandomPrompt = (e) => {
+    e.preventDefault();
+
     const randomPrompt =
       examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
 
@@ -49,14 +51,14 @@ const UserInput = ({ responses, setResponses }) => {
       {loading ? (
         <p className="loading-text">Generating...</p>
       ) : (
-        <>
+        <form>
           <label className="justify-start" htmlFor="prompt">
             Enter Prompt
           </label>
           <textarea name="promptInput" id="prompt" rows="15"></textarea>
           <button onClick={getRandomPrompt}>Random Prompt</button>
           <button onClick={getResponse}>Submit</button>
-        </>
+        </form>
       )}
     </div>
   );

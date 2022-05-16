@@ -24,7 +24,7 @@
   justify-items: start;
 }
 
-.user-input-section {
+.user-input-section form {
   display: flex;
   flex-direction: column;
 }
